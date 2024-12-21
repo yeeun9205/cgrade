@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>등급 계산기</title> <!-- 고정된 제목 -->
+    <style>
+        /* 전체 페이지의 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9; /* 배경색을 연한 회색으로 */
+            color: #333; /* 글씨색을 어두운 회색으로 */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 세로 방향 중앙 정렬 */
+            align-items: center;
+            height: 100vh; /* 화면 전체 높이 */
+        }
+
+        /* 헤더(제목) 스타일 */
+        h1 {
+            background-color: #007bff; /* 파란색 배경 */
+            color: white; /* 흰색 글씨 */
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* 폼 스타일 */
+        form {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px; /* 제목과 폼 사이 여백 */
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff; /* 파란색 버튼 */
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3; /* 버튼 색깔이 더 어두워짐 */
+        }
+
+        /* 결과(등급) 스타일 */
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #007bff; /* 파란색 텍스트 */
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 20px;
+            }
+
+            form {
+                width: 90%; /* 화면 크기에 맞춰 폼 크기 조정 */
+            }
+
+            button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>등급 계산기</h1> <!-- 고정된 제목 -->
+    <form method="POST">
+        <label for="subject">과목 이름:</label>
+        <input type="text" id="subject" name="subject" value="{{ subject or '' }}" required><br><br>
+        
+        <label for="total">총 인원:</label>
+        <input type="number" id="total" name="total" value="{{ total or '' }}" required><br><br>
+
+        <label for="rank">본인 등수:</label>
+        <input type="number" id="rank" name="rank" value="{{ rank or '' }}" required><br><br>
+
+        <button type="submit">등급 계산</button>
+    </form>
+
+    {% if grade is not none %}
+        <div class="result">
+            <h2>등급: {{ grade }}등급</h2>
+        </div>
+    {% endif %}
+</body>
+</html>
